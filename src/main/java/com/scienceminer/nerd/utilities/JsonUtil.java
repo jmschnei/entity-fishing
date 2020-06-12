@@ -126,10 +126,11 @@ public class JsonUtil {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(outputFile));
-            writer.write("RawName \t" + "NERType \t" + "WikidataID \n");
+            writer.write("RawName \t" + "NERType \t" + "WikipediaExternalRef \t" + "WikidataID \n");
             for (int i = 0; i < entityList.size(); i++) {
                 writer.write(entityList.get(i).getRawName() + "\t" +
                         entityList.get(i).getType().getName() + "\t" +
+                        entityList.get(i).getWikipediaExternalRef() + "\t" +
                         (entityList.get(i).getWikidataId()) + "\n");
             }
 
