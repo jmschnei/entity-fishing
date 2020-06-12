@@ -170,7 +170,7 @@ public class JsonUtil {
             for (File file : listOfFiles) {
                 if (file.isFile()) {
                     System.out.println("Extracting file: " + file.getCanonicalPath());
-                    if (jsonUtil.parseFromJsonFile(file) != null) {
+                    if ((file != null) && (jsonUtil.parseFromJsonFile(file) != null)) {
                         entityList.addAll(jsonUtil.parseFromJsonFile(file));
                         // Create a list with the distinct elements
                         List<NerdEntity> listDistinct = entityList.stream().distinct().collect(Collectors.toList());
