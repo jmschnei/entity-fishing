@@ -170,11 +170,14 @@ public class JsonUtil {
             for (File file : listOfFiles) {
                 if (file.isFile()) {
                     System.out.println("Extracting file: " + file.getCanonicalPath());
-                    entityList.addAll(jsonUtil.parseFromJsonFile(file));
-
-                    // Create a list with the distinct elements
-                    List<NerdEntity> listDistinct = entityList.stream().distinct().collect(Collectors.toList());
-                    jsonUtil.entitiesToFile(listDistinct, outputFile);
+                    if (jsonUtil.parseFromJsonFile(file) != null) {
+                        entityList.addAll(jsonUtil.parseFromJsonFile(file));
+                        // Create a list with the distinct elements
+                        List<NerdEntity> listDistinct = entityList.stream().distinct().collect(Collectors.toList());
+                        jsonUtil.entitiesToFile(listDistinct, outputFile);
+                    } else {
+                        continue;
+                    }
                 } else {
                     System.err.println("Directory " + dir + "doesn't exist");
                     System.exit(-1);
